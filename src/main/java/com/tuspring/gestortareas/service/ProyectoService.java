@@ -15,12 +15,12 @@ public class ProyectoService {
         this.proyectoRepository = proyectoRepository;
     }
 
-    // Listamos todos los proeyctos
+    // Listamos todos los proyectos
     public List<Proyecto> listarTodos() {
         return proyectoRepository.findAll();
     }
 
-    //Listamos un proyecto buscado por id
+    // Listamos un proyecto buscado por id
     public Optional<Proyecto> obtenerPorId(Long id) {
         return proyectoRepository.findById(id);
     }
@@ -28,6 +28,19 @@ public class ProyectoService {
     // Guardamos un nuevo proyecto
     public Proyecto guardar(Proyecto proyecto) {
         return proyectoRepository.save(proyecto);
+    }
+
+    // Actualizamos un proyecto
+    public Proyecto actualizar(Long id, Proyecto proyectoActualizado) {
+        return proyectoRepository.findById(id)
+                .map(proyecto -> {
+                    proyecto.setNombre(proyectoActualizado.getNombre());
+                    proyecto.setDescripcion(proyectoActualizado.getDescripcion());
+                    proyecto.setFechaInicio(proyectoActualizado.getFechaInicio());
+                    proyecto.setEstado(proyectoActualizado.getEstado());
+                    return proyectoRepository.save(proyecto);
+                })
+                .orElseThrow(() -> new RuntimeException("Proyecto no encontrado con el id" + id));
     }
 
     // Eliminamos un proyecto

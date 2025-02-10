@@ -31,6 +31,19 @@ public class TareaService {
         return tareaRepository.save(tarea);
     }
 
+    // Actualizar tarea
+    public Tarea actualizar(Long id, Tarea tareaActualizada) {
+        return tareaRepository.findById(id)
+                .map(tarea -> {
+                    tarea.setTitulo(tareaActualizada.getTitulo());
+                    tarea.setDescripcion(tareaActualizada.getDescripcion());
+                    tarea.setFechaLimite(tareaActualizada.getFechaLimite());
+                    tarea.setEstado(tareaActualizada.getEstado());
+                    return tareaRepository.save(tarea);
+                })
+                .orElseThrow(() -> new RuntimeException("Tarea no encontrada con el id" + id));
+    }
+
     // Eliminar una tarea
     public void eliminar(Long id) {
         tareaRepository.deleteById(id);
