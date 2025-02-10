@@ -1,5 +1,6 @@
 package com.tuspring.gestortareas.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import java.time.LocalDate;
 
@@ -24,6 +25,7 @@ public class Tarea {
 
     @ManyToOne
     @JoinColumn(name = "proyecto_id", nullable = false)
+    @JsonIgnore
     private Proyecto proyecto;
 
     // Constructores

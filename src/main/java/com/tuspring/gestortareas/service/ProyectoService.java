@@ -3,6 +3,7 @@ package com.tuspring.gestortareas.service;
 import com.tuspring.gestortareas.model.EstadoProyecto;
 import com.tuspring.gestortareas.model.Proyecto;
 import com.tuspring.gestortareas.repository.ProyectoRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -10,6 +11,7 @@ import java.util.Optional;
 
 @Service
 public class ProyectoService {
+    @Autowired
     private final ProyectoRepository proyectoRepository;
 
     public ProyectoService(ProyectoRepository proyectoRepository){
@@ -22,6 +24,10 @@ public class ProyectoService {
 
     public Optional<Proyecto> obtenerPorId(Long id) {
         return proyectoRepository.findById(id);
+    }
+
+    public Proyecto obtenerProyectoPorId(Long id) {
+        return proyectoRepository.findById(id).orElse(null);
     }
 
     public Proyecto guardar(Proyecto proyecto) {

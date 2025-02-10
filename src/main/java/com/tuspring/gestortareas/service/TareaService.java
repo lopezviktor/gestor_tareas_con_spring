@@ -21,6 +21,9 @@ public class TareaService {
         return tareaRepository.findByProyectoId(proyectoId);
     }
 
+    public List<Tarea> obtenerTodasLasTareas() {
+        return tareaRepository.findAll();
+    }
     public Optional<Tarea> obtenerPorId(Long id){
         return tareaRepository.findById(id);
     }

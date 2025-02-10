@@ -1,8 +1,12 @@
 package com.tuspring.gestortareas.controller;
 
 import com.tuspring.gestortareas.model.EstadoTarea;
+import com.tuspring.gestortareas.model.Proyecto;
 import com.tuspring.gestortareas.model.Tarea;
+import com.tuspring.gestortareas.service.ProyectoService;
 import com.tuspring.gestortareas.service.TareaService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,10 +17,19 @@ import java.util.Optional;
 @RequestMapping("/tareas")
 public class TareaController {
 
-    private final TareaService tareaService;
+    @Autowired
+    private TareaService tareaService;
+
+    @Autowired
+    private ProyectoService proyectoService;
 
     public TareaController(TareaService tareaService) {
         this.tareaService = tareaService;
+    }
+
+    @GetMapping
+    public List<Tarea> obtenerTareas() {
+        return tareaService.obtenerTodasLasTareas();
     }
 
     // Listar todas las tareas de un proyecto por id
@@ -35,8 +48,24 @@ public class TareaController {
 
     // Crear una nueva tarea
     @PostMapping
-    public Tarea crearTarea(@RequestBody Tarea tarea) {
-        return tareaService.guardar(tarea);
+    public ResponseEntity<Tarea> crearTarea(@RequestBody Tarea tarea) {
+        if (tarea.getProyecto() == null || tarea.getProyecto().getId() == null) {
+            return ResponseEntity.badRequest().body(null); // Si no se proporciona un proyecto, devuelve un error
+        }
+
+        // Buscar el proyecto en la base de datos
+        Proyecto proyecto = proyectoService.obtenerProyectoPorId(tarea.getProyecto().getId());
+
+        if (proyecto == null) {
+            return ResponseEntity.badRequest().body(null); // Si el proyecto no existe, devuelve un error
+        }
+
+        // Asigna el proyecto a la tarea
+        tarea.setProyecto(proyecto);
+
+        // Guardar la tarea
+        Tarea nuevaTarea = tareaService.guardar(tarea);
+        return ResponseEntity.status(HttpStatus.CREATED).body(nuevaTarea);
     }
 
     // Actualizar una tarea ya existente
