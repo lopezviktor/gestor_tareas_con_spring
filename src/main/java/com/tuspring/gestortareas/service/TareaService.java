@@ -1,5 +1,6 @@
 package com.tuspring.gestortareas.service;
 
+import com.tuspring.gestortareas.model.EstadoTarea;
 import com.tuspring.gestortareas.model.Tarea;
 import com.tuspring.gestortareas.repository.TareaRepository;
 import org.springframework.stereotype.Service;
@@ -16,22 +17,18 @@ public class TareaService {
         this.tareaRepository = tareaRepository;
     }
 
-    // Listar lista de tareas por id de proyecto
     public List<Tarea> listarPorProyecto(Long proyectoId) {
         return tareaRepository.findByProyectoId(proyectoId);
     }
 
-    // Listar tarea por id
     public Optional<Tarea> obtenerPorId(Long id){
         return tareaRepository.findById(id);
     }
 
-    // Guardar nueva tarea
     public Tarea guardar(Tarea tarea) {
         return tareaRepository.save(tarea);
     }
 
-    // Actualizar tarea
     public Tarea actualizar(Long id, Tarea tareaActualizada) {
         return tareaRepository.findById(id)
                 .map(tarea -> {
@@ -44,8 +41,15 @@ public class TareaService {
                 .orElseThrow(() -> new RuntimeException("Tarea no encontrada con el id" + id));
     }
 
-    // Eliminar una tarea
     public void eliminar(Long id) {
         tareaRepository.deleteById(id);
+    }
+
+    public List<Tarea> listarPorEstado(EstadoTarea estado) {
+        return tareaRepository.findByEstado(estado);
+    }
+
+    public List<Tarea> listarPorProyectoYEstado(Long proyectoId, EstadoTarea estado) {
+        return tareaRepository.findByProyectoIdAndEstado(proyectoId, estado);
     }
 }

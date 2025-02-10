@@ -1,5 +1,6 @@
 package com.tuspring.gestortareas.controller;
 
+import com.tuspring.gestortareas.model.EstadoTarea;
 import com.tuspring.gestortareas.model.Tarea;
 import com.tuspring.gestortareas.service.TareaService;
 import org.springframework.http.ResponseEntity;
@@ -54,5 +55,17 @@ public class TareaController {
     public ResponseEntity<Void> eliminarTarea(@PathVariable Long id) {
         tareaService.eliminar(id);
         return ResponseEntity.noContent().build();
+    }
+
+    // Obtener tareas por estado
+    @GetMapping("/estado/{estado}")
+    public List<Tarea> obtenerTareasPorEstado(@PathVariable EstadoTarea estado) {
+        return tareaService.listarPorEstado(estado);
+    }
+
+    // Obtener tareas de un proyecto en un estado específico
+    @GetMapping("/proyecto/{proyectoId}/estado/{estado}")
+    public List<Tarea> obtenerTareasPorProyectoYEstado(@PathVariable Long proyectoId, @PathVariable EstadoTarea estado) {
+        return tareaService.listarPorProyectoYEstado(proyectoId, estado);
     }
 }

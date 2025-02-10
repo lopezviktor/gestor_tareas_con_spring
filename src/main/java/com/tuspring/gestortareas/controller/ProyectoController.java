@@ -1,5 +1,6 @@
 package com.tuspring.gestortareas.controller;
 
+import com.tuspring.gestortareas.model.EstadoProyecto;
 import com.tuspring.gestortareas.model.Proyecto;
 import com.tuspring.gestortareas.service.ProyectoService;
 import org.springframework.http.ResponseEntity;
@@ -54,5 +55,17 @@ public class ProyectoController {
     public ResponseEntity<Void> eliminarProyecto(@PathVariable Long id){
         proyectoService.eliminar(id);
         return ResponseEntity.noContent().build();
+    }
+
+    // Obtener proyectos por estado
+    @GetMapping("/estado/{estado}")
+    public List<Proyecto> obtenerProyectosPorEstado(@PathVariable EstadoProyecto estado){
+        return proyectoService.listarPorEstado(estado);
+    }
+
+    // Buscar proyectos por nombre (filtro de busqueda)
+    @GetMapping("/buscar")
+    public List<Proyecto> buscarProyectosPorNombre(@RequestParam String nombre) {
+        return proyectoService.buscarPorNombre(nombre);
     }
 }
