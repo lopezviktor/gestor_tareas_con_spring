@@ -1,0 +1,119 @@
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #f8f9fa;
+    color: #333;
+}
+
+/* Estilos del nav */
+nav {
+    display: flex;
+    justify-content: center;
+    background: #fff;
+    padding: 10px 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 20px;
+}
+
+nav ul li {
+    display: inline;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #333;
+    font-size: 16px;
+    padding: 8px 16px;
+    transition: background 0.2s;
+}
+
+nav ul li a:hover {
+    background: #ddd;
+    border-radius: 5px;
+}
+
+/* Lista de tareas */
+.task-list {
+    list-style: none;
+    padding: 0;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.task-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #fff;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.task-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.task-title {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.task-date {
+    font-size: 14px;
+    color: #777;
+}
+
+/* Botones minimalistas */
+.task-actions a,
+.btn-add {
+    text-decoration: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: 0.3s ease-in-out;
+}
+
+.btn-edit {
+    background: #007bff;
+    color: white;
+}
+
+.btn-delete {
+    background: #dc3545;
+    color: white;
+    margin-left: 10px;
+}
+
+.btn-add {
+    display: block;
+    width: fit-content;
+    margin: 20px auto;
+    background: #28a745;
+    color: white;
+    text-align: center;
+}
+
+.btn-edit:hover {
+    background: #0056b3;
+}
+
+.btn-delete:hover {
+    background: #a71d2a;
+}
+
+.btn-add:hover {
+    background: #218838;
+}

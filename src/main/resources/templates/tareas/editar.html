@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Editar Tarea</title>
+    <link rel="stylesheet" href="/styles/styles.css">
+</head>
+<body>
+<h1>Editar Tarea</h1>
+
+<form th:action="@{/tareas/actualizar/{id}(id=${tarea.id})}" th:object="${tarea}" method="post">
+    <label>Título:</label>
+    <input type="text" th:field="*{titulo}" required>
+
+    <label>Descripción:</label>
+    <textarea th:field="*{descripcion}"></textarea>
+
+    <label>Fecha Límite:</label>
+    <input type="date" th:field="*{fechaLimite}">
+
+    <label>Estado:</label>
+    <select th:field="*{estado}">
+        <option th:each="estado : ${T(com.tuspring.gestortareas.model.EstadoTarea).values()}"
+                th:value="${estado}" th:text="${estado}"></option>
+    </select>
+
+    <label>Proyecto:</label>
+    <select th:field="*{proyecto.id}">
+        <option th:each="proyecto : ${proyectos}" th:value="${proyecto.id}" th:text="${proyecto.nombre}"></option>
+    </select>
+
+    <button type="submit">Actualizar</button>
+</form>
+
+<a href="/tareas">Volver a la lista de tareas</a>
+</body>
+</html>

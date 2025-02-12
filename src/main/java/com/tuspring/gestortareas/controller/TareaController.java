@@ -1,100 +1,77 @@
 package com.tuspring.gestortareas.controller;
 
-import com.tuspring.gestortareas.model.EstadoTarea;
-import com.tuspring.gestortareas.model.Proyecto;
 import com.tuspring.gestortareas.model.Tarea;
 import com.tuspring.gestortareas.service.ProyectoService;
 import com.tuspring.gestortareas.service.TareaService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
 
-@RestController
+@Controller
 @RequestMapping("/tareas")
 public class TareaController {
 
-    @Autowired
     private TareaService tareaService;
 
-    @Autowired
     private ProyectoService proyectoService;
 
-    public TareaController(TareaService tareaService) {
+    public TareaController(TareaService tareaService, ProyectoService proyectoService) {
         this.tareaService = tareaService;
+        this.proyectoService = proyectoService;
     }
 
+    // Mostrar lista de tareas en Thymeleaf
     @GetMapping
-    public List<Tarea> obtenerTareas() {
-        return tareaService.obtenerTodasLasTareas();
+    public String listarTareas(Model model) {
+        List<Tarea> tareas = tareaService.obtenerTodasLasTareas();
+        model.addAttribute("tareas", tareas);
+        return "tareas/index"; // Carga tareas/index.html
     }
 
-    // Listar todas las tareas de un proyecto por id
-    @GetMapping("/proyecto/{proyectoId}")
-    public List<Tarea> listarTareasPorProyecto(@PathVariable Long proyectoId) {
-        return tareaService.listarPorProyecto(proyectoId);
+    // Mostrar formulario para crear una nueva tarea
+    @GetMapping("/crear")
+    public String mostrarFormularioCreacion(Model model) {
+        model.addAttribute("tarea", new Tarea());
+        model.addAttribute("proyectos", proyectoService.listarTodos()); // Para seleccionar un proyecto
+        return "tareas/crear";
     }
 
-    // Obtener una tarea por ID
-    @GetMapping("/{id}")
-    public ResponseEntity<Tarea> obtenerTarea(@PathVariable Long id) {
+    // Guardar una nueva tarea desde el formulario Thymeleaf
+    @PostMapping("/guardar")
+    public String guardarTarea(@ModelAttribute Tarea tarea) {
+        tareaService.guardar(tarea);
+        return "redirect:/tareas";
+    }
+
+    // Mostrar formulario de edición de tarea
+    @GetMapping("/editar/{id}")
+    public String mostrarFormularioEdicion(@PathVariable Long id, Model model) {
         Optional<Tarea> tarea = tareaService.obtenerPorId(id);
-        return tarea.map(ResponseEntity::ok)
-                .orElseGet(() -> ResponseEntity.notFound().build());
-    }
-
-    // Crear una nueva tarea
-    @PostMapping
-    public ResponseEntity<Tarea> crearTarea(@RequestBody Tarea tarea) {
-        if (tarea.getProyecto() == null || tarea.getProyecto().getId() == null) {
-            return ResponseEntity.badRequest().body(null); // Si no se proporciona un proyecto, devuelve un error
-        }
-
-        // Buscar el proyecto en la base de datos
-        Proyecto proyecto = proyectoService.obtenerProyectoPorId(tarea.getProyecto().getId());
-
-        if (proyecto == null) {
-            return ResponseEntity.badRequest().body(null); // Si el proyecto no existe, devuelve un error
-        }
-
-        // Asigna el proyecto a la tarea
-        tarea.setProyecto(proyecto);
-
-        // Guardar la tarea
-        Tarea nuevaTarea = tareaService.guardar(tarea);
-        return ResponseEntity.status(HttpStatus.CREATED).body(nuevaTarea);
-    }
-
-    // Actualizar una tarea ya existente
-    @PutMapping("/{id}")
-    public ResponseEntity<Tarea> actualizarTarea(@PathVariable Long id, @RequestBody Tarea tareaActualizada) {
-        try {
-            Tarea tarea = tareaService.actualizar(id, tareaActualizada);
-            return ResponseEntity.ok(tarea);
-        } catch (RuntimeException e) {
-            return ResponseEntity.notFound().build();
+        if (tarea.isPresent()) {
+            model.addAttribute("tarea", tarea.get());
+            model.addAttribute("proyectos", proyectoService.listarTodos()); // Para seleccionar proyecto
+            return "tareas/editar";
+        } else {
+            return "redirect:/tareas";
         }
     }
 
-    // Eliminar una tarea
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> eliminarTarea(@PathVariable Long id) {
+    // Actualizar una tarea desde el formulario Thymeleaf
+    @PostMapping("/actualizar/{id}")
+    public String actualizarTarea(@PathVariable Long id, @ModelAttribute Tarea tareaActualizada) {
+        tareaService.actualizar(id, tareaActualizada);
+        return "redirect:/tareas";
+    }
+
+    // Eliminar una tarea desde Thymeleaf
+    @GetMapping("/eliminar/{id}")
+    public String eliminarTarea(@PathVariable Long id) {
         tareaService.eliminar(id);
-        return ResponseEntity.noContent().build();
+        return "redirect:/tareas";
     }
 
-    // Obtener tareas por estado
-    @GetMapping("/estado/{estado}")
-    public List<Tarea> obtenerTareasPorEstado(@PathVariable EstadoTarea estado) {
-        return tareaService.listarPorEstado(estado);
-    }
 
-    // Obtener tareas de un proyecto en un estado específico
-    @GetMapping("/proyecto/{proyectoId}/estado/{estado}")
-    public List<Tarea> obtenerTareasPorProyectoYEstado(@PathVariable Long proyectoId, @PathVariable EstadoTarea estado) {
-        return tareaService.listarPorProyectoYEstado(proyectoId, estado);
-    }
 }
