@@ -2,36 +2,42 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Lista de Tareas</title>
-    <link rel="stylesheet" th:href="@{/styles/styles.css}">
+    <link rel="stylesheet" href="/styles/styles.css">
 </head>
 <body>
-
-<h1>Lista de Tareas</h1>
-
 <nav>
-    <ul>
+    <ul class="nav-menu">
         <li><a href="/">Inicio</a></li>
         <li><a href="/tareas">Tareas</a></li>
         <li><a href="/proyectos">Proyectos</a></li>
     </ul>
 </nav>
 
-<ul class="task-list">
-    <li th:each="tarea : ${tareas}" class="task-item">
-        <div class="task-info">
-            <span class="task-title" th:text="${tarea.titulo}"></span>
-            <span class="task-date" th:text="${tarea.fechaLimite}"></span>
-        </div>
-        <div class="task-actions">
+<h1>Lista de Tareas</h1>
+<table class="project-table">
+    <thead>
+    <tr>
+        <th>Título</th>
+        <th>Descripción</th>
+        <th>Fecha Límite</th>
+        <th>Estado</th>
+        <th>Acciones</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="tarea : ${tareas}">
+        <td th:text="${tarea.titulo}"></td>
+        <td th:text="${tarea.descripcion}"></td>
+        <td th:text="${tarea.fechaLimite}"></td>
+        <td th:text="${tarea.estado}"></td>
+        <td class="project-actions">
             <a th:href="@{/tareas/editar/{id}(id=${tarea.id})}" class="btn-edit">Editar</a>
             <a th:href="@{/tareas/eliminar/{id}(id=${tarea.id})}" class="btn-delete">Eliminar</a>
-        </div>
-    </li>
-</ul>
+        </td>
+    </tr>
+    </tbody>
+</table>
 
-<div class="add-task">
-    <a href="/tareas/crear" class="btn-add">Crear Nueva Tarea</a>
-</div>
-
+<button class="btn-add" onclick="window.location.href='/tareas/crear'">Crear Nueva Tarea</button>
 </body>
 </html>

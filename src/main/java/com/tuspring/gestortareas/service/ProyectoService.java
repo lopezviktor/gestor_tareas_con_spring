@@ -58,4 +58,8 @@ public class ProyectoService {
     public List<Proyecto> buscarPorNombre(String nombre) {
         return proyectoRepository.findByNombreContainingIgnoreCase(nombre);
     }
+
+    public long contarProyectos() {
+        return proyectoRepository.count();
+    }
 }

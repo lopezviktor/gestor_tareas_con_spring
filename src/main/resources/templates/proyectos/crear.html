@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Crear Proyecto</title>
-    <link rel="stylesheet" th:href="@{/styles/styles.css}">
+    <link rel="stylesheet" href="/styles/styles.css">
 </head>
 <body>
 <h1>Crear Nuevo Proyecto</h1>
@@ -26,7 +26,8 @@
 
     <button type="submit">Guardar</button>
 </form>
-
-<a href="/proyectos">Volver a la lista de proyectos</a>
+<div class="contenedores-centrados">
+    <button class="btn" onclick="window.location.href='/proyectos'">Volver a la lista de proyectos</button>
+</div>
 </body>
 </html>

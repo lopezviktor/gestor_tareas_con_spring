@@ -1,313 +1,275 @@
-/* Estilos generales */
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f3f7fa;
-    margin: 0;
-    padding: 20px;
+* {
     box-sizing: border-box;
-}
-
-h1, h2 {
+    font-family: Arial, sans-serif;
     color: #333;
-    text-align: center;
-}
-
-/* Estilos del nav */
-nav {
-    display: flex;
-    justify-content: center;
-    background: #fff;
-    padding: 10px 0;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px;
-}
-
-nav ul {
-    list-style: none;
-    padding: 0;
     margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: #F5F5F5;
+    font-size: 16px;
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+
+nav {
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    font-size: 16px;
+    border-bottom: 2px solid #305ca9;
+}
+
+.nav-menu {
     display: flex;
     gap: 20px;
+    list-style: none;
 }
 
-nav ul li {
-    display: inline;
-}
-
-nav ul li a {
+.nav-menu li a {
+    font-size: 14px;
+    font-weight: bold;
+    color: white;
     text-decoration: none;
-    color: #333;
+    transition: color 0.3s ease;
+}
+
+.nav-menu li a:hover,
+.nav-menu li a.active {
+    color: #305ca9;
+    font-weight: bold;
+    border-bottom: 2px solid #305ca9;
+    padding-bottom: 3px;
+}
+
+main {
+    flex: 1;
+    padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+section {
+    background-color: white;
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.05);
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+section:hover {
+    box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.12);
+}
+
+
+h2 {
+    font-size: 28px;
+    font-weight: bold;
+    line-height: 1.4;
+    color: #211F1B;
+    margin-bottom: 10px;
+    border-bottom: 2px solid #305ca9;
+    padding-bottom: 5px;
+}
+
+p {
+    font-size: 15px;
+    line-height: 1.5;
+    color: #555;
+    margin-bottom: 15px;
+}
+
+ul {
+    list-style-type: none;
+}
+
+ul li {
     font-size: 16px;
-    padding: 8px 16px;
-    transition: background 0.2s;
+    line-height: 1.5;
+    padding: 8px 0;
+    border-bottom: 1px solid #e0e0e0;
 }
 
-nav ul li a:hover {
-    background: #ddd;
+ul li:last-child {
+    border-bottom: none;
+}
+
+
+/* ======== Contenedor Botones ======== */
+.btn {
+    padding: 12px 50px;
+    font-size: 14px;
+    font-weight: bold;
+    background-color: #bebebe;
+    color: black;
+    text-transform: uppercase;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+    border: 2px solid transparent;
     border-radius: 5px;
+    transition: all 0.3s ease-in-out;
 }
 
-/*  Tablas Generales */
+/* Efectos al Hover */
+.btn::before, .btn::after {
+    content: '';
+    position: absolute;
+    height: 2px;
+    width: 0%;
+    background-color: #305ca9;
+    transition: width 0.4s ease-in-out;
+}
 
-table {
+.btn::before {
+    top: 0;
+    left: 0;
+}
+
+.btn::after {
+    bottom: 0;
+    right: 0;
+}
+
+.btn:hover::before,
+.btn:hover::after {
+    width: 100%;
+}
+
+.btn:hover {
+    color: #305ca9;
+    border-color: #305ca9;
+    box-shadow: 0px 0px 10px rgba(48, 92, 169, 0.5);
+}
+
+
+/* ======== Footer ======== */
+footer {
+    background-color: #211F1B;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    font-size: 12px;
+    margin-top: auto;
+}
+
+
+/* ===========================
+   PROYECTOS/INDEX
+=========================== */
+
+.project-table {
     width: 100%;
     border-collapse: collapse;
-    margin-bottom: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    background-color: #ffffff;
+    margin-top: 20px;
+    font-size: 0.95rem;
+    font-family: Arial, sans-serif;
 }
 
-table th, table td {
-    padding: 12px;
-    border: 1px solid #ccc;
+.project-table th,
+.project-table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #ddd;
     text-align: center;
+    justify-content: center;
 }
 
-table th {
-    background-color: #007bff;
-    color: white;
+.project-table th {
+    background-color: #211F1B;
+    color: #fff;
     font-weight: bold;
+    text-align: center;
+    justify-content: center;
 }
 
-table tr:nth-child(even) {
+.project-table tr:nth-child(even) {
     background-color: #f9f9f9;
 }
 
-table tr:hover {
-    background-color: #e1eaff;
-    transition: 0.3s;
+.project-table tr:hover {
+    background-color: #f1f1f1;
 }
 
-
-/*  Botones Generales  */
-
-button, .btn {
-    padding: 10px 15px;
-    font-size: 14px;
-    font-weight: bold;
-    border-radius: 5px;
-    cursor: pointer;
-    text-decoration: none;
-    transition: background-color 0.3s;
-}
-
-.btn-primary {
-    background-color: #007bff;
-    color: white;
-    border: none;
-}
-
-.btn-primary:hover {
-    background-color: #0056b3;
-}
-
-.btn-danger {
-    background-color: #dc3545;
-    color: white;
-    border: none;
-}
-
-.btn-danger:hover {
-    background-color: #c82333;
-}
-
-.btn-secondary {
-    background-color: #6c757d;
-    color: white;
-    border: none;
-}
-
-.btn-secondary:hover {
-    background-color: #5a6268;
-}
-
-a.btn {
-    display: inline-block;
-    padding: 10px 15px;
-    font-size: 14px;
-    font-weight: bold;
-    text-align: center;
-}
-
-.task-list, .project-list {
-    list-style-type: none;
-    padding: 0;
-    margin: 20px auto;
-    max-width: 800px;
-}
-
-.task-item, .project-item {
-    background-color: #ffffff;
-    border: 1px solid #ccc;
-    padding: 15px;
-    margin-bottom: 15px;
-    border-radius: 5px;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-    transition: box-shadow 0.3s ease;
-}
-
-.task-item:hover, .project-item:hover {
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15);
-    background-color: #f1f8ff;
-}
-
-
-/* Información Listas  */
-
-.task-info, .project-info {
+/* Acciones */
+.project-actions {
     display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    font-size: 14px;
-    color: #333;
-}
-
-.task-title, .project-title {
-    font-weight: bold;
-    font-size: 16px;
-    color: #007bff;
-}
-
-.task-date, .project-date, .project-status {
-    font-style: italic;
-    color: #6c757d;
-}
-
-/*  Formularios Crear/Edit */
-
-form {
-    background-color: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 500px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-form label {
-    font-weight: bold;
-    color: #333;
-}
-
-form input[type="text"],
-form input[type="date"],
-form textarea,
-form select {
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    font-size: 14px;
-    width: 100%;
-    box-sizing: border-box;
-}
-
-form textarea {
-    resize: vertical;
-    height: 100px;
-}
-
-form button {
-    padding: 10px;
-    font-size: 14px;
-    font-weight: bold;
-    border-radius: 5px;
-    cursor: pointer;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    transition: background-color 0.3s;
-}
-
-form button:hover {
-    background-color: #007bff;
-}
-
-
-/* Enlaces Volver  */
-
-.back-link {
-    display: block;
-    text-align: center;
-    margin: 20px 0;
-    font-weight: bold;
-    color: #007bff;
-    text-decoration: none;
-    font-size: 16px;
-}
-
-.back-link:hover {
-    text-decoration: underline;
-}
-
-
-/*  Sección de Acciones */
-
-.action-links {
-    display: flex;
-    justify-content: center;
+    justify-content: flex-end;
     gap: 10px;
 }
 
-.action-links a {
+/* Estilo de botones reutilizado */
+.btn-edit {
+    padding: 6px 10px;
+    color: green;
+    border: 1px solid darkgreen;
+    border-radius: 3px;
     text-decoration: none;
-    padding: 8px 12px;
-    font-size: 14px;
-    font-weight: bold;
-    color: white;
-    border-radius: 5px;
     transition: background-color 0.3s;
 }
 
-.action-links .edit {
-    background-color: #17a2b8;
+.btn-edit:hover {
+    background-color: darkgreen;
+    color: white;
 }
 
-.action-links .edit:hover {
-    background-color: #138496;
+.btn-delete {
+    padding: 6px 10px;
+    color: red;
+    border: 1px solid #5b0000;
+    border-radius: 3px;
+    text-decoration: none;
+    transition: background-color 0.3s;
 }
 
-.action-links .delete {
-    background-color: #dc3545;
+.btn-delete:hover {
+    background-color: red;
+    color: #211F1B;
 }
 
-.action-links .delete:hover {
-    background-color: #c82333;
+/* ENCABEZADO PRINCIPAL */
+h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #211F1B;
+    text-align: center;
+    margin-bottom: 2rem;
+    letter-spacing: 1px;
 }
-
-
-/* Responsive */
 
 @media (max-width: 768px) {
-    form {
-        width: 90%;
-    }
-
-    table th, table td {
-        padding: 8px;
-        font-size: 12px;
-    }
-
-    button, .btn {
-        font-size: 12px;
-        padding: 8px 10px;
-    }
-    task-info, .project-info {
+    .nav-menu {
         flex-direction: column;
-        gap: 5px;
+        align-items: center;
+        gap: 15px;
+    }
+    nav {
+        flex-direction: column;
+        padding: 15px;
+    }
+    body {
+        padding: 15px;
     }
 
-    .task-title, .project-title {
+    section {
+        padding: 15px;
+    }
+
+    h2 {
+        font-size: 18px;
+    }
+
+    ul li {
         font-size: 14px;
     }
-
-    .btn-edit, .btn-delete {
-        font-size: 12px;
-        padding: 6px 10px;
-    }
 }
-
-

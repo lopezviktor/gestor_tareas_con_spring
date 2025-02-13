@@ -55,4 +55,12 @@ public class TareaService {
     public List<Tarea> listarPorProyectoYEstado(Long proyectoId, EstadoTarea estado) {
         return tareaRepository.findByProyectoIdAndEstado(proyectoId, estado);
     }
+
+    public long contarTareas() {
+        return tareaRepository.count();
+    }
+
+    public long contarTareasCompletadas() {
+        return tareaRepository.countByEstado(EstadoTarea.COMPLETADA);
+    }
 }
