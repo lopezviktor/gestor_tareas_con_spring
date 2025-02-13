@@ -26,14 +26,14 @@ public class ProyectoController {
     public String listarProyectos(Model model) {
         List<Proyecto> proyectos = proyectoService.listarTodos();
         model.addAttribute("proyectos", proyectos);
-        return "index"; // Carga index.html
+        return "proyectos/index"; // Carga index.html
     }
 
     // Mostrar un formulario para crear un nuevo proyecto
     @GetMapping("/crear")
     public String mostrarFormularioCreacion(Model model) {
         model.addAttribute("proyecto", new Proyecto());
-        return "crear"; // Carga crear.html
+        return "proyectos/crear"; // Carga crear.html
     }
 
     // Guardar un nuevo proyecto desde el formulario
@@ -49,7 +49,7 @@ public class ProyectoController {
         Optional<Proyecto> proyecto = proyectoService.obtenerPorId(id);
         if (proyecto.isPresent()) {
             model.addAttribute("proyecto", proyecto.get());
-            return "editar"; // Carga editar.html
+            return "proyectos/editar"; // Carga editar.html
         } else {
             return "redirect:/proyectos"; // Si no existe, vuelve a la lista
         }

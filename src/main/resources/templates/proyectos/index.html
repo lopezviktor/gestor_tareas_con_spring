@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Lista de Proyectos</title>
+    <link rel="stylesheet" th:href="@{/styles/styles.css}">
+</head>
+<body>
+
+<h1>Lista de Proyectos</h1>
+
+<nav>
+    <ul>
+        <li><a href="/">Inicio</a></li>
+        <li><a href="/tareas">Tareas</a></li>
+        <li><a href="/proyectos">Proyectos</a></li>
+    </ul>
+</nav>
+
+<ul class="project-list">
+    <li th:each="proyecto : ${proyectos}" class="project-item">
+        <div class="project-info">
+            <span class="project-title" th:text="${proyecto.nombre}"></span>
+            <span class="project-desc" th:text="${proyecto.descripcion}"></span>
+            <span class="project-date" th:text="${proyecto.fechaInicio}"></span>
+            <span class="project-status" th:text="${proyecto.estado}"></span>
+        </div>
+        <div class="project-actions">
+            <a th:href="@{/proyectos/editar/{id}(id=${proyecto.id})}" class="btn-edit">Editar</a>
+            <a th:href="@{/proyectos/eliminar/{id}(id=${proyecto.id})}" class="btn-delete">Eliminar</a>
+        </div>
+    </li>
+</ul>
+
+<div class="add-project">
+    <a href="/proyectos/crear" class="btn-add">Crear Nuevo Proyecto</a>
+</div>
+
+</body>
+</html>

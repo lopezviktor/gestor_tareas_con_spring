@@ -13,7 +13,7 @@ public class SecurityConfig {
         return http
                 .csrf(csrf -> csrf.disable())  // Desactiva CSRF (solo si es API REST)
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/proyectos/**", "/tareas/**").permitAll() // Permitir acceso sin autenticación
+                        .requestMatchers("/", "/tareas/**", "/proyectos/**", "/styles/**").permitAll() // Permitir acceso a estas rutas
                         .requestMatchers("/api/**").permitAll()
                         .anyRequest().authenticated()
                 )

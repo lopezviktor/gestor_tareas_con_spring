@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Crear Proyecto</title>
+    <link rel="stylesheet" th:href="@{/styles/styles.css}">
+</head>
+<body>
+<h1>Crear Nuevo Proyecto</h1>
+
+<form th:action="@{/proyectos/guardar}" th:object="${proyecto}" method="post">
+    <label>Nombre:</label>
+    <input type="text" th:field="*{nombre}" required>
+
+    <label>Descripción:</label>
+    <textarea th:field="*{descripcion}"></textarea>
+
+    <label>Fecha de Inicio:</label>
+    <input type="date" th:field="*{fechaInicio}" required>
+
+    <label>Estado:</label>
+    <select th:field="*{estado}">
+        <option th:each="estado : ${T(com.tuspring.gestortareas.model.EstadoProyecto).values()}"
+                th:value="${estado}"
+                th:text="${estado}"></option>
+    </select>
+
+    <button type="submit">Guardar</button>
+</form>
+
+<a href="/proyectos">Volver a la lista de proyectos</a>
+</body>
+</html>
