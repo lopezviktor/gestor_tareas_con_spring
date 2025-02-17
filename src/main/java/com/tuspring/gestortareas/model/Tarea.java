@@ -2,6 +2,8 @@ package com.tuspring.gestortareas.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.time.LocalDate;
 
 @Entity
@@ -17,6 +19,7 @@ public class Tarea {
 
     private String descripcion;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate fechaLimite;
 
     @Enumerated(EnumType.STRING)

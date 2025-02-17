@@ -1,6 +1,8 @@
 package com.tuspring.gestortareas.model;
 
 import jakarta.persistence.*;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.time.LocalDate;
 import java.util.List;
 
@@ -18,6 +20,7 @@ public class Proyecto {
     private String descripcion;
 
     @Column(nullable = false)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate fechaInicio;
 
     @Enumerated(EnumType.STRING)

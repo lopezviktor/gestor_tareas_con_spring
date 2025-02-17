@@ -48,10 +48,16 @@ public class ProyectoController {
     public String mostrarFormularioEdicion(@PathVariable Long id, Model model) {
         Optional<Proyecto> proyecto = proyectoService.obtenerPorId(id);
         if (proyecto.isPresent()) {
-            model.addAttribute("proyecto", proyecto.get());
-            return "proyectos/editar"; // Carga editar.html
+            Proyecto proyectoObtenido = proyecto.get();
+
+            String fechaFormateada = proyectoObtenido.getFechaInicio().toString();
+
+            model.addAttribute("proyecto", proyectoObtenido);
+            model.addAttribute("fechaInicioFormateada", fechaFormateada);
+
+            return "proyectos/editar";
         } else {
-            return "redirect:/proyectos"; // Si no existe, vuelve a la lista
+            return "redirect:/proyectos";
         }
     }
 
