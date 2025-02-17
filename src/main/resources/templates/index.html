@@ -12,6 +12,10 @@
             <li><a href="/tareas">Tareas</a></li>
             <li><a href="/proyectos">Proyectos</a></li>
         </ul>
+        <div class="nav-user">
+            <span th:text="${#authentication.name}"></span>
+            <a th:href="@{/logout}" class="logout-btn">Cerrar sesión</a>
+        </div>
     </nav>
     <div class="contenedor-principal">
         <section>

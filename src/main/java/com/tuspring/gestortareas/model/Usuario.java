@@ -12,8 +12,6 @@ public class Usuario {
     private String username;
     @Column(nullable = false)
     private String password;
-    @Column(nullable = false)
-    private String role;
 
     public Usuario() {}
 
@@ -29,10 +27,6 @@ public class Usuario {
         return password;
     }
 
-    public String getRole() {
-        return role;
-    }
-
     public void setUsername(String username) {
         this.username = username;
     }
@@ -41,14 +35,12 @@ public class Usuario {
         this.password = password;
     }
 
-    public void setRole(String role) {
-        this.role = role;
-    }
-
     @Override
     public String toString() {
-        return "Usuario [id=" + id + ", username=" + username + ", password=" + password + ", role=" + role + "]";
+        return "Usuario{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                '}';
     }
-
-
 }

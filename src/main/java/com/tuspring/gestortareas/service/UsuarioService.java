@@ -27,7 +27,6 @@ public class UsuarioService implements UserDetailsService {
         return User.builder()
                 .username(usuario.getUsername())
                 .password(usuario.getPassword()) // Asegúrate de que esté encriptada
-                .roles(usuario.getRole()) // Asegúrate de que los roles estén correctamente configurados
                 .build();
     }
 

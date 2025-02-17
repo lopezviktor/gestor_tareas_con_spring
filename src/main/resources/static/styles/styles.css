@@ -14,24 +14,30 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    overflow-x: hidden;
 }
 
 
 nav {
     background-color: black;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: space-between;
     align-items: center;
     padding: 15px 30px;
     font-size: 16px;
     border-bottom: 2px solid #305ca9;
+    position: relative;
 }
 
 .nav-menu {
+    list-style: none;
     display: flex;
     gap: 20px;
-    list-style: none;
+    margin: 0 auto;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .nav-menu li a {
@@ -48,6 +54,35 @@ nav {
     font-weight: bold;
     border-bottom: 2px solid #305ca9;
     padding-bottom: 3px;
+}
+
+.nav-user {
+    display: flex;
+    gap: 20px;
+    list-style: none;
+    align-items: center;
+    justify-content: flex-end;
+    margin-left: auto;
+}
+
+.nav-user span {
+    font-size: 14px;
+    font-weight: bold;
+    color: #fff;
+}
+
+.nav-user a {
+    font-size: 14px;
+    font-weight: bold;
+    color: darkred;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    border-bottom: 2px solid transparent;
+}
+
+.nav-user a:hover {
+    color: red;
+    border-bottom: 2px solid red;
 }
 
 main {
@@ -100,8 +135,8 @@ ul li:last-child {
     display: flex;              /* Alinea los elementos en fila */
     gap: 15px;                  /* Espacio entre los filtros */
     align-items: center;        /* Alineación vertical */
-    margin-bottom: 20px;        /* Separación con la tabla */
     flex-wrap: wrap;            /* Permite que se ajusten en pantallas pequeñas */
+    justify-content: center;    /* Centra los filtros horizontalmente */
 }
 
 
@@ -114,17 +149,8 @@ ul li:last-child {
 }
 
 .filtros button {
-    background-color: #305ca9;  /* Color azul para los botones */
-    color: white;
     padding: 8px 15px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
     transition: background-color 0.3s ease;
-}
-
-.filtros button:hover {
-    background-color: #21447a;  /* Cambio de color al hacer hover */
 }
 
 /* ======== Contenedor Botones ======== */
@@ -175,22 +201,26 @@ ul li:last-child {
     color: #305ca9;
     border-color: #305ca9;
     box-shadow: 0px 0px 10px rgba(48, 92, 169, 0.5);
+    cursor: pointer;
 }
 
 .btn-add {
-    position: relative; /* Asegura que los pseudoelementos estén relativos al botón */
-    overflow: hidden;
-    width: 25%;
-    justify-content: center;
-    text-align: center;
-    height: fit-content;
-    padding: 6px;
-    margin-inline: auto;
-    border-radius: 3px;
-    text-decoration: none;
-    transition: background-color 0.3s;
+    margin: auto;
     margin-top: 10px;
-    font-size: 16px;
+    padding: 12px 50px;
+    width: 25%;
+    font-size: 14px;
+    font-weight: bold;
+    color: black;
+    text-transform: uppercase;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+    border: 2px solid black;
+    border-radius: 5px;
+    transition: all 0.3s ease-in-out;
 }
 
 /* ======== Footer ======== */
@@ -205,12 +235,91 @@ footer {
 footer p {
     color: white;
 }
+
+.auth-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: #0f1b31;
+    padding: 20px;
+}
+
+.auth-container p{
+    color: white;
+}
+
+.auth-container a{
+    color: #305ca9;
+}
+
+.auth-form {
+    background-color: whitesmoke;
+    padding: 30px 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.auth-form input[type="text"],
+.auth-form input[type="password"] {
+    padding: 12px 15px;
+    border: 1px solid black;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: border 0.3s ease;
+}
+
+.auth-form input[type="text"]:focus,
+.auth-form input[type="password"]:focus {
+    border-color: #305ca9;
+    box-shadow: 0 0 5px rgba(48, 92, 169, 0.5);
+}
+
+.auth-form button {
+    background-color: #305ca9;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.auth-form button:hover {
+    background-color: #21447a;
+    cursor: pointer;
+}
+
+.auth-form a {
+    text-decoration: none;
+    color: #305ca9;
+    text-align: center;
+    transition: color 0.3s ease;
+}
+
+.auth-form a:hover {
+    color: #21447a;
+}
+
+.auth-form p {
+    text-align: center;
+    font-size: 14px;
+    color: #333;
+}
+
 /* ===========================
    PROYECTOS/INDEX
 =========================== */
 
 .project-table {
-    width: 100%;
+    margin: 10px auto;
+    width: 99%;
     border-collapse: collapse;
     margin-top: 20px;
     font-size: 0.95rem;
@@ -276,6 +385,7 @@ footer p {
 .btn-edit:hover {
     background-color: darkgreen;
     color: white;
+    cursor: pointer;
 }
 
 .btn-delete {
@@ -290,6 +400,7 @@ footer p {
 .btn-delete:hover {
     background-color: red;
     color: #211F1B;
+    cursor: pointer;
 }
 
 /* ENCABEZADO PRINCIPAL */
@@ -298,7 +409,6 @@ h1 {
     font-weight: bold;
     color: #211F1B;
     text-align: center;
-    margin-bottom: 2rem;
     letter-spacing: 1px;
 }
 
@@ -355,6 +465,7 @@ form select:focus {
 .btn-guardar:hover {
     background-color: darkblue;
     color: white;
+    cursor: pointer;
 }
 
 .contenedores-centrados {
@@ -367,6 +478,10 @@ form select:focus {
 textarea {
     resize: vertical;
     min-height: 100px;
+}
+
+button, a, input[type="submit"], input[type="button"], .btn, .btn-add, .btn-edit, .btn-delete {
+    cursor: pointer !important;
 }
 
 @media (max-width: 768px) {
@@ -397,8 +512,8 @@ textarea {
     .project-table, .task-table {
         width: 100%;
         display: block;
-        overflow-x: auto; /* Agrega scroll horizontal si es necesario */
-        white-space: nowrap; /* Evita que el contenido se rompa */
+        overflow-x: auto;
+        white-space: nowrap;
     }
 
     .project-table thead, .task-table thead {

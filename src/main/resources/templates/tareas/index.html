@@ -6,13 +6,16 @@
 </head>
 <body>
 <nav>
-    <ul class="nav-menu">
+    <ul  class="nav-menu">
         <li><a href="/">Inicio</a></li>
         <li><a href="/tareas">Tareas</a></li>
         <li><a href="/proyectos">Proyectos</a></li>
     </ul>
+    <div class="nav-user">
+        <span th:text="${#authentication.name}"></span>
+        <a th:href="@{/logout}" class="logout-btn">Cerrar sesión</a>
+    </div>
 </nav>
-
 <h1>Lista de Tareas</h1>
 <table class="project-table">
     <thead>
@@ -39,7 +42,9 @@
     </tr>
     </tbody>
 </table>
-
 <button class="btn-add" onclick="window.location.href='/tareas/crear'">Crear Nueva Tarea</button>
+<footer>
+    <p>&copy; 2025 Gestor de Proyectos/Tareas. Todos los derechos reservados.</p>
+</footer>
 </body>
 </html>

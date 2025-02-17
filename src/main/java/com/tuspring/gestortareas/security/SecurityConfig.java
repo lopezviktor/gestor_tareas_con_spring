@@ -22,7 +22,7 @@ public class SecurityConfig {
             )
             .formLogin(form -> form
                     .loginPage("/login")
-                    .defaultSuccessUrl("/proyectos", true)  // Redirige tras login
+                    .defaultSuccessUrl("/", true)  // Redirige tras login
                     .permitAll()
             )
             .logout(logout -> logout

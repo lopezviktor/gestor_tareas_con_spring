@@ -3,19 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <title>Registro</title>
-    <link>
+    <link rel="stylesheet" href="/styles/styles.css">
 </head>
 <body>
-<div th:replace="~{layout/navbar :: navbar}"></div>
-<form th:action="@{/registro}" th:object="${usuario}" method="post">
-    <input type="text" th:field="*{username}" placeholder="Usuario"
-           required> <input type="password" th:field="*{password}"
-                            placeholder="Contraseña" required> <select th:field="*{role}">
-    <option value="USER">Usuario</option>
-    <option value="ADMIN">Administrador</option>
-</select>
-    <button type="submit">Registrarse</button>
-</form>
-
+    <div class="auth-container">
+        <form class="auth-form" th:action="@{/registro}" th:object="${usuario}" method="post">
+            <input type="text" th:field="*{username}" placeholder="Usuario" required>
+            <input type="password" th:field="*{password}" placeholder="Contraseña" required>
+            <button type="submit">Registrarse</button>
+        </form>
+        <p><a th:href="@{/login}">Volver al login</a></p>
+    </div>
 </body>
 </html>
