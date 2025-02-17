@@ -21,6 +21,7 @@
         <th>Descripción</th>
         <th>Fecha Límite</th>
         <th>Estado</th>
+        <th>Proyecto</th>
         <th>Acciones</th>
     </tr>
     </thead>
@@ -30,6 +31,7 @@
         <td th:text="${tarea.descripcion}"></td>
         <td th:text="${tarea.fechaLimite}"></td>
         <td th:text="${tarea.estado}"></td>
+        <td th:text="${tarea.proyecto != null ? tarea.proyecto.nombre : 'Sin proyecto'}"></td>
         <td class="project-actions">
             <a th:href="@{/tareas/editar/{id}(id=${tarea.id})}" class="btn-edit">Editar</a>
             <a th:href="@{/tareas/eliminar/{id}(id=${tarea.id})}" class="btn-delete">Eliminar</a>

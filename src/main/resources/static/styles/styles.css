@@ -57,9 +57,7 @@ main {
     flex-direction: column;
     gap: 25px;
 }
-.contenedor-principal {
-    gap: 10px;
-}
+
 section {
     background-color: white;
     border-radius: 12px;
