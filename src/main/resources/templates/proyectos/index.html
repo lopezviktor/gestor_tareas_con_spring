@@ -13,6 +13,21 @@
         </ul>
     </nav>
     <h1>Lista de Proyectos</h1>
+    <div class="filtros">
+        <form method="get" action="/proyectos/buscar" style="margin-bottom: 20px;">
+            <input type="text" name="nombre" placeholder="Buscar proyecto por nombre" required />
+            <button type="submit" class="btn">Buscar</button>
+        </form>
+        <form method="get" action="/proyectos/filtrar" style="margin-bottom: 20px;">
+            <select name="estado" required>
+                <option value="">Seleccionar estado</option>
+                <option value="ACTIVO">Activo</option>
+                <option value="EN_PROGRESO">En progreso</option>
+                <option value="FINALIZADO">Finalizado</option>
+            </select>
+            <button type="submit" class="btn">Filtrar</button>
+        </form>
+    </div>
     <table class="project-table">
         <thead>
         <tr>
@@ -20,6 +35,7 @@
             <th>Descripción</th>
             <th>Fecha de Inicio</th>
             <th>Estado</th>
+            <th>Número de Tareas</th>
             <th>Acciones</th>
         </tr>
         </thead>
@@ -29,6 +45,7 @@
             <td th:text="${proyecto.descripcion}"></td>
             <td th:text="${proyecto.fechaInicio}"></td>
             <td th:text="${proyecto.estado}"></td>
+            <td th:text="${proyecto.tareas != null ? proyecto.tareas.size() : 0}"></td>
             <td class="project-actions">
                 <a th:href="@{/proyectos/editar/{id}(id=${proyecto.id})}" class="btn-edit">Editar</a>
                 <a th:href="@{/proyectos/eliminar/{id}(id=${proyecto.id})}" class="btn-delete">Eliminar</a>

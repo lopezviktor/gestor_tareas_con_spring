@@ -96,6 +96,36 @@ ul li:last-child {
     border-bottom: none;
 }
 
+.filtros {
+    display: flex;              /* Alinea los elementos en fila */
+    gap: 15px;                  /* Espacio entre los filtros */
+    align-items: center;        /* Alineación vertical */
+    margin-bottom: 20px;        /* Separación con la tabla */
+    flex-wrap: wrap;            /* Permite que se ajusten en pantallas pequeñas */
+}
+
+
+.filtros input[type="text"],
+.filtros select {
+    padding: 8px 12px;          /* Espaciado interno */
+    border: 1px solid #ccc;     /* Borde ligero */
+    border-radius: 5px;         /* Bordes redondeados */
+    font-size: 14px;
+}
+
+.filtros button {
+    background-color: #305ca9;  /* Color azul para los botones */
+    color: white;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.filtros button:hover {
+    background-color: #21447a;  /* Cambio de color al hacer hover */
+}
 
 /* ======== Contenedor Botones ======== */
 .btn {
@@ -193,6 +223,10 @@ footer p {
     border-bottom: 1px solid #ddd;
     text-align: center;
     justify-content: center;
+    max-width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .project-table th {
@@ -211,14 +245,23 @@ footer p {
     background-color: #f1f1f1;
 }
 
+.project-table th:last-child, .project-table td:last-child {
+    width: 150px;
+}
+
 /* Acciones */
 .project-actions {
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
+    align-items: center;
     gap: 10px;
+    width: 100%;
 }
 
-
+.project-actions a{
+    display: inline-block;
+    padding: 6px 10px;
+}
 
 /* Estilo de botones reutilizado */
 .btn-edit {
@@ -350,5 +393,64 @@ textarea {
 
     ul li {
         font-size: 14px;
+    }
+    .project-table, .task-table {
+        width: 100%;
+        display: block;
+        overflow-x: auto; /* Agrega scroll horizontal si es necesario */
+        white-space: nowrap; /* Evita que el contenido se rompa */
+    }
+
+    .project-table thead, .task-table thead {
+        display: none; /* Oculta los encabezados en pantallas pequeñas */
+    }
+
+    .project-table tbody, .task-table tbody {
+        display: block;
+    }
+
+    .project-table tr, .task-table tr {
+        display: block;
+        margin-bottom: 15px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        padding: 10px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .project-table td, .task-table td {
+        display: flex;
+        justify-content: space-between;
+        padding: 8px 10px;
+        text-align: left;
+        border-bottom: 1px solid #eee;
+    }
+
+    .project-table td::before, .task-table td::before {
+        content: attr(data-label);
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+
+    .project-actions, .task-actions {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .filtros {
+        flex-direction: column;   /* Cambia a disposición vertical */
+        align-items: stretch;     /* Estira los elementos al ancho completo */
+    }
+
+    .filtros form {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .filtros input[type="text"],
+    .filtros select,
+    .filtros button {
+        width: 100%;              /* Ocupa todo el ancho en pantallas pequeñas */
     }
 }

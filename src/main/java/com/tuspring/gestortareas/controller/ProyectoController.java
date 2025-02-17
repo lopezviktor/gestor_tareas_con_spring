@@ -69,4 +69,18 @@ public class ProyectoController {
         return "redirect:/proyectos";
     }
 
+    @GetMapping("/buscar")
+    public String buscarProyectos(@RequestParam("nombre") String nombre, Model model) {
+        List<Proyecto> proyectos = proyectoService.buscarPorNombre(nombre);
+        model.addAttribute("proyectos", proyectos);
+        return "proyectos/index"; // Retorna la vista Thymeleaf con los proyectos filtrados
+    }
+
+    @GetMapping("/filtrar")
+    public String filtrarProyectosPorEstado(@RequestParam("estado") EstadoProyecto estado, Model model) {
+        List<Proyecto> proyectos = proyectoService.listarPorEstado(estado);
+        model.addAttribute("proyectos", proyectos);
+        return "proyectos/index"; // Retorna la vista Thymeleaf con los proyectos filtrados
+    }
+
 }
