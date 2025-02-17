@@ -57,10 +57,13 @@ main {
     flex-direction: column;
     gap: 25px;
 }
-
+.contenedor-principal {
+    gap: 10px;
+}
 section {
     background-color: white;
     border-radius: 12px;
+    margin: 10px;
     padding: 30px;
     box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.05);
     transition: box-shadow 0.3s ease-in-out;
@@ -81,13 +84,6 @@ h2 {
     padding-bottom: 5px;
 }
 
-p {
-    font-size: 15px;
-    line-height: 1.5;
-    color: #555;
-    margin-bottom: 15px;
-}
-
 ul {
     list-style-type: none;
 }
@@ -96,7 +92,6 @@ ul li {
     font-size: 16px;
     line-height: 1.5;
     padding: 8px 0;
-    border-bottom: 1px solid #e0e0e0;
 }
 
 ul li:last-child {
@@ -109,7 +104,6 @@ ul li:last-child {
     padding: 12px 50px;
     font-size: 14px;
     font-weight: bold;
-    background-color: #bebebe;
     color: black;
     text-transform: uppercase;
     text-align: center;
@@ -117,54 +111,72 @@ ul li:last-child {
     display: inline-block;
     position: relative;
     overflow: hidden;
-    border: 2px solid transparent;
+    border: 2px solid black;
     border-radius: 5px;
     transition: all 0.3s ease-in-out;
 }
 
 /* Efectos al Hover */
-.btn::before, .btn::after {
+.btn::before, .btn::after, .btn-add::before, .btn-add::after {
     content: '';
     position: absolute;
-    height: 2px;
     width: 0%;
     background-color: #305ca9;
     transition: width 0.4s ease-in-out;
+    z-index: 1;
 }
 
-.btn::before {
+.btn::before, .btn-add::before {
     top: 0;
     left: 0;
 }
 
-.btn::after {
+.btn::after, .btn-add::after {
     bottom: 0;
     right: 0;
 }
 
 .btn:hover::before,
-.btn:hover::after {
+.btn:hover::after,
+.btn-add:hover::before,
+.btn-add:hover::after{
     width: 100%;
 }
 
-.btn:hover {
+.btn:hover, .btn-add:hover {
     color: #305ca9;
     border-color: #305ca9;
     box-shadow: 0px 0px 10px rgba(48, 92, 169, 0.5);
 }
 
+.btn-add {
+    position: relative; /* Asegura que los pseudoelementos estén relativos al botón */
+    overflow: hidden;
+    width: 25%;
+    justify-content: center;
+    text-align: center;
+    height: fit-content;
+    padding: 6px;
+    margin-inline: auto;
+    border-radius: 3px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+    margin-top: 10px;
+    font-size: 16px;
+}
 
 /* ======== Footer ======== */
 footer {
     background-color: #211F1B;
-    color: white;
     text-align: center;
     padding: 20px;
     font-size: 12px;
     margin-top: auto;
 }
 
-
+footer p {
+    color: white;
+}
 /* ===========================
    PROYECTOS/INDEX
 =========================== */
@@ -208,6 +220,8 @@ footer {
     gap: 10px;
 }
 
+
+
 /* Estilo de botones reutilizado */
 .btn-edit {
     padding: 6px 10px;
@@ -245,6 +259,73 @@ h1 {
     text-align: center;
     margin-bottom: 2rem;
     letter-spacing: 1px;
+}
+
+form {
+    width: 50%;
+    background-color: #f9f9f9;
+    padding: 20px 25px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: 20px auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+form label {
+    font-size: 16px;
+    margin-bottom: 5px;
+    font-weight: 500;
+}
+
+form input[type="text"],
+form input[type="date"],
+form textarea,
+form select {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: border 0.3s ease;
+}
+
+form input[type="text"]:focus,
+form input[type="date"]:focus,
+form textarea:focus,
+form select:focus {
+    border-color: #305ca9;
+    outline: none;
+    box-shadow: 0 0 5px rgba(48, 92, 169, 0.5);
+}
+
+.btn-guardar {
+    padding: 6px 10px;
+    color: blue;
+    border: 1px solid darkblue;
+    border-radius: 3px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+    width: 50%;
+    margin-inline: auto;
+}
+
+.btn-guardar:hover {
+    background-color: darkblue;
+    color: white;
+}
+
+.contenedores-centrados {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    gap: 10%;
+}
+
+textarea {
+    resize: vertical;
+    min-height: 100px;
 }
 
 @media (max-width: 768px) {

@@ -28,7 +28,7 @@
         <option th:each="proyecto : ${proyectos}" th:value="${proyecto.id}" th:text="${proyecto.nombre}"></option>
     </select>
 
-    <button type="submit">Actualizar</button>
+    <button  class="btn-guardar" type="submit">Actualizar</button>
 </form>
 <div class="contenedores-centrados">
     <button class="btn" onclick="window.location.href='/tareas'">Volver a la lista de tareas</button>

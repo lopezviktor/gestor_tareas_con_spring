@@ -13,27 +13,29 @@
             <li><a href="/proyectos">Proyectos</a></li>
         </ul>
     </nav>
-    <section>
-        <h2>¿Qué es Gestor de Proyectos/Tareas?</h2>
-        <p>Esta aplicación te ayuda a gestionar proyectos y tareas, permitiéndote crear, editar y seguir el progreso de tus proyectos de forma organizada.</p>
-    </section>
-    <section>
-        <h2>Acciones rápidas</h2>
-        <div class="contenedores-centrados">
-            <button class="btn" onclick="window.location.href='/tareas/crear'">Crear nueva tarea</button>
-            <button class="btn" onclick="window.location.href='/proyectos/crear'">Crear nuevo proyecto</button>
-        </div>
-    </section>
-    <section>
-        <h2>Resumen</h2>
-        <div class="contenedores-centrados">
-            <ul>
-                <li>Total de proyectos: <span th:text="${totalProyectos}"></span></li>
-                <li>Total de tareas: <span th:text="${totalTareas}"></span></li>
-                <li>Tareas completadas: <span th:text="${tareasCompletadas}"></span></li>
-            </ul>
-        </div>
-    </section>
+    <div class="contenedor-principal">
+        <section>
+            <h2>¿Qué es Gestor de Proyectos/Tareas?</h2>
+            <p>Esta aplicación te ayuda a gestionar proyectos y tareas, permitiéndote crear, editar y seguir el progreso de tus proyectos de forma organizada.</p>
+        </section>
+        <section>
+            <h2>Acciones rápidas</h2>
+            <div class="contenedores-centrados">
+                <button class="btn" onclick="window.location.href='/tareas/crear'">Crear nueva tarea</button>
+                <button class="btn" onclick="window.location.href='/proyectos/crear'">Crear nuevo proyecto</button>
+            </div>
+        </section>
+        <section>
+            <h2>Resumen</h2>
+            <div class="contenedores-centrados">
+                <ul>
+                    <li>Total de proyectos: <span th:text="${totalProyectos}"></span></li>
+                    <li>Total de tareas: <span th:text="${totalTareas}"></span></li>
+                    <li>Tareas completadas: <span th:text="${tareasCompletadas}"></span></li>
+                </ul>
+            </div>
+        </section>
+    </div>
     <footer>
         <p>&copy; 2025 Gestor de Proyectos/Tareas. Todos los derechos reservados.</p>
     </footer>
