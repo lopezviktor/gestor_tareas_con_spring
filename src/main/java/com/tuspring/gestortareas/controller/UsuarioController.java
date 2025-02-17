@@ -28,9 +28,14 @@ public class UsuarioController {
     }
 
     @PostMapping("/registro")
-    public String registrarUsuario(@ModelAttribute Usuario usuario) {
-        usuarioService.registrarUsuario(usuario);
-        return "redirect:/user/login";
+    public String registrarUsuario(@ModelAttribute Usuario usuario, Model model) {
+        try {
+            usuarioService.registrarUsuario(usuario);
+            return "redirect:/login";
+        } catch (IllegalArgumentException e) {
+            model.addAttribute("error", e.getMessage());
+            return "user/registro";
+        }
     }
 
 }

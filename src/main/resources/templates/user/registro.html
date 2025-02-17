@@ -7,11 +7,15 @@
 </head>
 <body>
     <div class="auth-container">
+        <h1 class="title-user">REGISTRO:</h1>
         <form class="auth-form" th:action="@{/registro}" th:object="${usuario}" method="post">
             <input type="text" th:field="*{username}" placeholder="Usuario" required>
             <input type="password" th:field="*{password}" placeholder="Contraseña" required>
             <button type="submit">Registrarse</button>
         </form>
+        <div class="errorRegistro" th:if="${error}">
+            <p th:text="${error}"></p>
+        </div>
         <p><a th:href="@{/login}">Volver al login</a></p>
     </div>
 </body>

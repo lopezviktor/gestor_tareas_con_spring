@@ -1,6 +1,6 @@
 * {
     box-sizing: border-box;
-    font-family: Arial, sans-serif;
+    font-family: 'Roboto', sans-serif;
     color: #333;
     margin: 0;
     padding: 0;
@@ -254,6 +254,13 @@ footer p {
     color: #305ca9;
 }
 
+.errorRegistro p {
+    color: red !important;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+
 .auth-form {
     background-color: whitesmoke;
     padding: 30px 40px;
@@ -408,6 +415,14 @@ h1 {
     font-size: 2.5rem;
     font-weight: bold;
     color: #211F1B;
+    text-align: center;
+    letter-spacing: 1px;
+}
+
+.title-user{
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: white;
     text-align: center;
     letter-spacing: 1px;
 }

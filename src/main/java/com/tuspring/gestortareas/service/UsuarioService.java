@@ -30,8 +30,11 @@ public class UsuarioService implements UserDetailsService {
                 .build();
     }
 
-    public Usuario registrarUsuario(Usuario usuario) {
-        usuario.setPassword(passwordEncoder.encode(usuario.getPassword())); // Encriptar la contraseña antes de guardarla
-        return usuarioRepository.save(usuario);
+    public void registrarUsuario(Usuario usuario) {
+        if (usuarioRepository.existsByUsername(usuario.getUsername())) {
+            throw new IllegalArgumentException("El usuario ya está registrado");
+        }
+        usuario.setPassword(passwordEncoder.encode(usuario.getPassword()));
+        usuarioRepository.save(usuario);
     }
 }
