@@ -132,19 +132,19 @@ ul li:last-child {
 }
 
 .filtros {
-    display: flex;              /* Alinea los elementos en fila */
-    gap: 15px;                  /* Espacio entre los filtros */
-    align-items: center;        /* Alineación vertical */
-    flex-wrap: wrap;            /* Permite que se ajusten en pantallas pequeñas */
-    justify-content: center;    /* Centra los filtros horizontalmente */
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 
 .filtros input[type="text"],
 .filtros select {
-    padding: 8px 12px;          /* Espaciado interno */
-    border: 1px solid #ccc;     /* Borde ligero */
-    border-radius: 5px;         /* Bordes redondeados */
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
     font-size: 14px;
 }
 
@@ -569,8 +569,8 @@ button, a, input[type="submit"], input[type="button"], .btn, .btn-add, .btn-edit
     }
 
     .filtros {
-        flex-direction: column;   /* Cambia a disposición vertical */
-        align-items: stretch;     /* Estira los elementos al ancho completo */
+        flex-direction: column;
+        align-items: stretch;
     }
 
     .filtros form {
@@ -581,6 +581,6 @@ button, a, input[type="submit"], input[type="button"], .btn, .btn-add, .btn-edit
     .filtros input[type="text"],
     .filtros select,
     .filtros button {
-        width: 100%;              /* Ocupa todo el ancho en pantallas pequeñas */
+        width: 100%;
     }
 }

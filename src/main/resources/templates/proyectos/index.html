@@ -52,7 +52,7 @@
             <td th:text="${proyecto.tareas != null ? proyecto.tareas.size() : 0}"></td>
             <td class="project-actions">
                 <a th:href="@{/proyectos/editar/{id}(id=${proyecto.id})}" class="btn-edit">Editar</a>
-                <a th:href="@{/proyectos/eliminar/{id}(id=${proyecto.id})}" class="btn-delete">Eliminar</a>
+                <a href="#" class="btn-delete" th:attr="onclick=|if(confirm('¿Estás seguro de que deseas eliminar este proyecto?')) window.location.href='/proyectos/eliminar/${proyecto.id}'|">Eliminar</a>
             </td>
         </tr>
         </tbody>
