@@ -26,7 +26,6 @@ nav {
     align-items: center;
     padding: 15px 30px;
     font-size: 16px;
-    border-bottom: 2px solid #305ca9;
     position: relative;
 }
 
@@ -168,6 +167,7 @@ ul li:last-child {
     border: 2px solid black;
     border-radius: 5px;
     transition: all 0.3s ease-in-out;
+    margin: 10px;
 }
 
 /* Efectos al Hover */
@@ -207,6 +207,7 @@ ul li:last-child {
 .btn-add {
     margin: auto;
     margin-top: 10px;
+    margin-bottom: 10px;
     padding: 12px 50px;
     width: 25%;
     font-size: 14px;
@@ -328,7 +329,6 @@ footer p {
     margin: 10px auto;
     width: 99%;
     border-collapse: collapse;
-    margin-top: 20px;
     font-size: 0.95rem;
     font-family: Arial, sans-serif;
 }
@@ -486,7 +486,6 @@ form select:focus {
 .contenedores-centrados {
     display: flex;
     justify-content: center;
-    margin-top: 20px;
     gap: 10%;
 }
 
@@ -532,7 +531,7 @@ button, a, input[type="submit"], input[type="button"], .btn, .btn-add, .btn-edit
     }
 
     .project-table thead, .task-table thead {
-        display: none; /* Oculta los encabezados en pantallas pequeñas */
+        display: none;
     }
 
     .project-table tbody, .task-table tbody {
