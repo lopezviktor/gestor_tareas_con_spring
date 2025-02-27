@@ -19,13 +19,13 @@ public class HomeController {
 
     @GetMapping("/")
     public String mostrarInicio(Model model) {
-        // Obtiene el total de proyectos
+
         long totalProyectos = proyectoService.contarProyectos();
-        // Obtiene el total de tareas
+
         long totalTareas = tareaService.contarTareas();
-        // Obtiene el total de tareas completadas
+
         long tareasCompletadas = tareaService.contarTareasCompletadas();
-        // Añade los valores al modelo para Thymeleaf
+
         model.addAttribute("totalProyectos", totalProyectos);
         model.addAttribute("totalTareas", totalTareas);
         model.addAttribute("tareasCompletadas", tareasCompletadas);
